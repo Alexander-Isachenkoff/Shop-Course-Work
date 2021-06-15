@@ -1,0 +1,90 @@
+﻿@model IEnumerable<WebApplication1.firstQuery_Result>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<form method="post">
+    <p>
+        <label for="numbers">Номер:</label>
+        @Html.ListBox("numbers", null, htmlAttributes: new { @class = "form-control", @size = 5 })
+        <br />
+        <input type="submit" value="Выполнить" />
+    </p>
+</form>
+
+<table class="table">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.unit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.shopName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.square)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Суммарная_стоимость)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Стоимость_всех_товаров_в_магазине)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.shopName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.square)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Суммарная_стоимость)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Стоимость_всех_товаров_в_магазине)
+            </td>
+        </tr>
+    }
+
+</table>

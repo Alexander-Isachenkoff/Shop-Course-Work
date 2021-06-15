@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ShopModel1Container" CdmEntityContainer="ShopEntities1">
+    <FunctionImportMapping FunctionImportName="getShopsInfo" FunctionName="Хранилище ShopModel1.getShopsInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShopModel1.getShopsInfo_Result">
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="square" ColumnName="square" />
+          <ScalarProperty Name="Avg_Square" ColumnName="Avg_Square" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="secondQuery_Single" FunctionName="Хранилище ShopModel1.secondQuery_Single">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShopModel1.secondQuery_Single_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Products_id" ColumnName="Products_id" />
+          <ScalarProperty Name="Shop_number" ColumnName="Shop_number" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="id1" ColumnName="id1" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Sort_id" ColumnName="Sort_id" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="name1" ColumnName="name1" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="square" ColumnName="square" />
+          <ScalarProperty Name="name2" ColumnName="name2" />
+          <ScalarProperty Name="name3" ColumnName="name3" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Column2" ColumnName="Column2" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

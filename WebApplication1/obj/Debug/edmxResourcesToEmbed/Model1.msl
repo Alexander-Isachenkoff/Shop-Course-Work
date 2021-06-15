@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ShopModelContainer" CdmEntityContainer="ShopEntities">
+    <EntitySetMapping Name="Product_in_shop">
+      <EntityTypeMapping TypeName="ShopModel.Product_in_shop">
+        <MappingFragment StoreEntitySet="Product_in_shop">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Products_id" ColumnName="Products_id" />
+          <ScalarProperty Name="Shop_number" ColumnName="Shop_number" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="ShopModel.Product">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Sort_id" ColumnName="Sort_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shops">
+      <EntityTypeMapping TypeName="ShopModel.Shop">
+        <MappingFragment StoreEntitySet="Shop">
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="square" ColumnName="square" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sorts">
+      <EntityTypeMapping TypeName="ShopModel.Sort">
+        <MappingFragment StoreEntitySet="Sort">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="getShopsInfo" FunctionName="Хранилище ShopModel.getShopsInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShopModel.getShopsInfo_Result">
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="square" ColumnName="square" />
+          <ScalarProperty Name="Avg_Square" ColumnName="Avg_Square" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="query2" FunctionName="Хранилище ShopModel.getShopsInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShopModel.getShopsInfo_Result">
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="square" ColumnName="square" />
+          <ScalarProperty Name="Avg_Square" ColumnName="Avg_Square" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="firstQuery" FunctionName="Хранилище ShopModel.firstQuery">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShopModel.firstQuery_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="shopName" ColumnName="shopName" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="square" ColumnName="square" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="Суммарная_стоимость" ColumnName="Суммарная стоимость" />
+          <ScalarProperty Name="Стоимость_всех_товаров_в_магазине" ColumnName="Стоимость всех товаров в магазине" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

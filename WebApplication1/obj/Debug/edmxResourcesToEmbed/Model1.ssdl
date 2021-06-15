@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Product_in_shop">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Products_id" Type="int" Nullable="false" />
+    <Property Name="Shop_number" Type="int" Nullable="false" />
+    <Property Name="cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="quantity" Type="float" Nullable="false" />
+    <Property Name="unit" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Sort_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="number" />
+    </Key>
+    <Property Name="number" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="square" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sort">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Product_i__Produ__5CD6CB2B">
+    <End Role="Products" Type="Self.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Product_in_shop" Type="Self.Product_in_shop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Product_in_shop">
+        <PropertyRef Name="Products_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product_i__Shop___5BE2A6F2">
+    <End Role="Shop" Type="Self.Shop" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Product_in_shop" Type="Self.Product_in_shop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="number" />
+      </Principal>
+      <Dependent Role="Product_in_shop">
+        <PropertyRef Name="Shop_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Products__Sort_i__5AEE82B9">
+    <End Role="Sort" Type="Self.Sort" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sort">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Sort_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="firstQuery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="number" Type="int" Mode="In" />
+  </Function>
+  <Function Name="getShopsInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Хранилище ShopModelContainer">
+    <EntitySet Name="Product_in_shop" EntityType="Self.Product_in_shop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sort" EntityType="Self.Sort" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Product_i__Produ__5CD6CB2B" Association="Self.FK__Product_i__Produ__5CD6CB2B">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Product_in_shop" EntitySet="Product_in_shop" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product_i__Shop___5BE2A6F2" Association="Self.FK__Product_i__Shop___5BE2A6F2">
+      <End Role="Shop" EntitySet="Shop" />
+      <End Role="Product_in_shop" EntitySet="Product_in_shop" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Products__Sort_i__5AEE82B9" Association="Self.FK__Products__Sort_i__5AEE82B9">
+      <End Role="Sort" EntitySet="Sort" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

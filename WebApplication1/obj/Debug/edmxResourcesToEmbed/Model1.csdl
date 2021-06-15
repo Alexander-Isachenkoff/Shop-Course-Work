@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Product_in_shop">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Products_id" Type="Int32" Nullable="false" />
+    <Property Name="Shop_number" Type="Int32" Nullable="false" />
+    <Property Name="cost" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="quantity" Type="Double" Nullable="false" />
+    <Property Name="unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__Product_i__Produ__5CD6CB2B" FromRole="Product_in_shop" ToRole="Products" />
+    <NavigationProperty Name="Shop" Relationship="Self.FK__Product_i__Shop___5BE2A6F2" FromRole="Product_in_shop" ToRole="Shop" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sort_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product_in_shop" Relationship="Self.FK__Product_i__Produ__5CD6CB2B" FromRole="Products" ToRole="Product_in_shop" />
+    <NavigationProperty Name="Sort" Relationship="Self.FK__Products__Sort_i__5AEE82B9" FromRole="Products" ToRole="Sort" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="number" />
+    </Key>
+    <Property Name="number" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="square" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Product_in_shop" Relationship="Self.FK__Product_i__Shop___5BE2A6F2" FromRole="Shop" ToRole="Product_in_shop" />
+  </EntityType>
+  <EntityType Name="Sort">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Products__Sort_i__5AEE82B9" FromRole="Sort" ToRole="Products" />
+  </EntityType>
+  <Association Name="FK__Product_i__Produ__5CD6CB2B">
+    <End Role="Products" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Product_in_shop" Type="Self.Product_in_shop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Product_in_shop">
+        <PropertyRef Name="Products_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product_i__Shop___5BE2A6F2">
+    <End Role="Shop" Type="Self.Shop" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Product_in_shop" Type="Self.Product_in_shop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="number" />
+      </Principal>
+      <Dependent Role="Product_in_shop">
+        <PropertyRef Name="Shop_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Products__Sort_i__5AEE82B9">
+    <End Role="Sort" Type="Self.Sort" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sort">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Sort_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ShopEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Product_in_shop" EntityType="Self.Product_in_shop" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Shops" EntityType="Self.Shop" />
+    <EntitySet Name="Sorts" EntityType="Self.Sort" />
+    <AssociationSet Name="FK__Product_i__Produ__5CD6CB2B" Association="Self.FK__Product_i__Produ__5CD6CB2B">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Product_in_shop" EntitySet="Product_in_shop" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product_i__Shop___5BE2A6F2" Association="Self.FK__Product_i__Shop___5BE2A6F2">
+      <End Role="Shop" EntitySet="Shops" />
+      <End Role="Product_in_shop" EntitySet="Product_in_shop" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Products__Sort_i__5AEE82B9" Association="Self.FK__Products__Sort_i__5AEE82B9">
+      <End Role="Sort" EntitySet="Sorts" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <FunctionImport Name="getShopsInfo" ReturnType="Collection(ShopModel.getShopsInfo_Result)" />
+    <FunctionImport Name="query2" ReturnType="Collection(ShopModel.getShopsInfo_Result)" />
+    <FunctionImport Name="firstQuery" ReturnType="Collection(ShopModel.firstQuery_Result)">
+      <Parameter Name="number" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="getShopsInfo_Result">
+    <Property Type="Int32" Name="number" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="address" Nullable="false" MaxLength="255" />
+    <Property Type="Double" Name="square" Nullable="false" />
+    <Property Type="Double" Name="Avg_Square" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="firstQuery_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="number" Nullable="true" />
+    <Property Type="Decimal" Name="cost" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Double" Name="quantity" Nullable="false" />
+    <Property Type="String" Name="unit" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="shopName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="address" Nullable="true" MaxLength="255" />
+    <Property Type="Double" Name="square" Nullable="true" />
+    <Property Type="String" Name="productName" Nullable="true" MaxLength="255" />
+    <Property Type="Double" Name="Суммарная_стоимость" Nullable="true" />
+    <Property Type="Double" Name="Стоимость_всех_товаров_в_магазине" Nullable="true" />
+  </ComplexType>
+</Schema>
